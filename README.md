@@ -1,4 +1,3 @@
-# Smart Tera — Water Network Review & Approval
 
 A single-page React app for reviewing and editing a water distribution network on a map.
 Three roles (**Admin / Editor / Operator**) with different permissions, and every network change
