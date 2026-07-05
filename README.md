@@ -116,9 +116,6 @@ The headline decisions:
 - **Login is user-selection, no passwords**; the session is persisted.
 - **Map-first**: you locate and select an element on the map, then edit/verify it in context.
 
-- **Expected-Ui**: with the help of the refrence i thought for making the ui more appealing.
+## Additional Features
 
-## Stretch goals included
-
-Diff view of the proposed edit, a published/proposed layer toggle, and a mock photo attachment on
-the field form. (Import/export, undo/redo, and search are noted as future work.)
+Includes a diff view of the proposed edit, a published/proposed layer toggle, and a mock photo attachment on the field form. Import/export, undo/redo, and search are planned for future work.

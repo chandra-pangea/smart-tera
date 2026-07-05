@@ -24,7 +24,6 @@ export function buildSplitPipeOperations(
     coordinates: splitCoord,
     // Auto-elevation: linear interpolation is not possible without endpoint
     // elevations here, so we default to 0 and let the editor adjust.
-    // (See docs/ASSUMPTIONS.md.)
     elevation: 0,
     demand: 0,
   }
