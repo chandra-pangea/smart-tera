@@ -31,17 +31,17 @@ npm run lint     # type-check only
 
 | Role     | Name          | Email                 | Can do                                                                        |
 | -------- | ------------- | --------------------- | ----------------------------------------------------------------------------- |
-| Admin    | Ava Admin     | `admin@utility.test`  | Review/approve/reject/publish **and** edit the network (superset — see below) |
-| Editor   | Ed Editor     | `editor@utility.test` | Add/modify/remove elements, assign field tasks, submit for approval           |
-| Operator | Ola Operator  | `op1@utility.test`    | Fill & submit the field form for assigned tasks; comment. Cannot edit.        |
-| Operator | Omar Operator | `op2@utility.test`    | Same as Ola — a second operator so assignment is a real choice.               |
+| Admin    | Admin         | `admin@utility.test`  | Review/approve/reject/publish **and** edit the network (superset — see below) |
+| Editor   | Editor        | `editor@utility.test` | Add/modify/remove elements, assign field tasks, submit for approval           |
+| Operator | Operator 1    | `op1@utility.test`    | Fill & submit the field form for assigned tasks; comment. Cannot edit.        |
+| Operator | Operator 2    | `op2@utility.test`    | Same as Ola — a second operator so assignment is a real choice.               |
 
 To walk the whole flow, **log out and back in** as each role (single active session per browser).
 The **Reset demo** button in the top bar restores the seed network and clears all edits/history.
 
 ## The core workflow
 
-1. **Editor** (or Admin) selects an element on the map or adds one and changes its properties.
+1. **Editor** selects an element on the map or adds one and changes its properties.
    Changes are collected into a single **Edit** in `draft` — never applied to the published network directly.
 2. *(optional)* The editor **assigns the Edit to an Operator** with an instruction (a `fieldTask`
    on the draft; the Edit stays `draft`).
@@ -108,19 +108,18 @@ of what buttons are shown. The Edit lifecycle is a guarded state machine
 
 ## Assumptions & trade-offs
 
-The full list — including how we studied **epanet-js** for the editing interactions — is in
-[`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md). The headline decisions:
+The headline decisions:
 
-- **Admin can edit *and* approve** (a superset of Editor) — resolving the spec's "focus on
-  governance rather than editing" wording. Self-approval is therefore possible; a real deployment
-  would likely enforce *approver ≠ author*.
+- **Admin focuses on governance.** Admin reviews, approves, or rejects proposed changes but cannot edit the network directly.
 - **Field verification is an optional sub-flow of `draft`** (a `fieldTask` on the Edit), not a
   separate lifecycle state — the states are exactly the spec's `draft / pending_approval /
   approved / rejected`.
 - **Login is user-selection, no passwords**; the session is persisted.
 - **Map-first**: you locate and select an element on the map, then edit/verify it in context.
 
+- **Expected-Ui**: with the help of the refrence i thought for making the ui more appealing.
+
 ## Stretch goals included
 
 Diff view of the proposed edit, a published/proposed layer toggle, and a mock photo attachment on
-the field form. (Import/export, undo/redo, and search are noted as future work in ASSUMPTIONS.)
+the field form. (Import/export, undo/redo, and search are noted as future work.)
