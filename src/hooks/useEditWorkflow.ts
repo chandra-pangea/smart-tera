@@ -5,7 +5,6 @@ import { availableTransitions, canTransition } from '@/lib/workflow'
 import {
   approveEdit,
   assignFieldTask,
-  modifyPendingEdit,
   rejectEdit,
   reopenEdit,
   submitForApproval,
@@ -25,12 +24,10 @@ export function useEditWorkflow(edit?: Edit) {
   return {
     transitions,
     canApprove: !!edit && canTransition(edit.status, 'approved', role),
-    canModify: !!edit && edit.status === 'pending_approval' && canTransition(edit.status, 'draft', role),
     submit: () => edit && dispatch(submitForApproval(edit.id)),
     approve: () => edit && dispatch(approveEdit(edit.id)),
     reject: (reason: string) => edit && dispatch(rejectEdit(edit.id, reason)),
     reopen: () => edit && dispatch(reopenEdit(edit.id)),
-    modify: () => edit && dispatch(modifyPendingEdit(edit.id)),
     assign: (params: { operatorId: string; instruction: string; targetElementId?: string }) =>
       edit && dispatch(assignFieldTask({ editId: edit.id, ...params })),
   }

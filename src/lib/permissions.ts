@@ -18,18 +18,12 @@ export type Capability =
   | 'post_comment' // post to an edit's conversation thread
 
 /**
- * Capability matrix. Admin is a deliberate SUPERSET of Editor (can edit *and*
- * approve) — see docs/ASSUMPTIONS.md "Admin can edit". Operator can only view,
+ * Capability matrix. Admin reviews and approves edits. Operator can only view,
  * fill the field form, and comment.
  */
 const CAPABILITIES_BY_ROLE: Record<Role, Capability[]> = {
   admin: [
     'view',
-    'edit_element',
-    'add_element',
-    'remove_element',
-    'assign_field_task',
-    'submit_for_approval',
     'approve_edit',
     'publish',
     'post_comment',

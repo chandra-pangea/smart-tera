@@ -14,7 +14,7 @@ export function TopBar() {
     <header className="flex h-12 shrink-0 items-center justify-between gap-3 border-b border-slate-200 bg-white px-4 shadow-sm">
       <div className="flex items-center gap-2">
         <span className="text-lg">💧</span>
-        <span className="font-semibold text-slate-800">Smart Tera</span>
+        <span className="font-semibold text-slate-800">SMARTTERRA</span>
         <span className="hidden text-xs text-slate-400 md:inline">Water Network Review</span>
       </div>
 

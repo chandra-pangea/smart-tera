@@ -13,9 +13,9 @@ import { ConversationThread } from './ConversationThread'
 import { AuditTrail } from './AuditTrail'
 
 /** The Admin's full review of one edit: diff, field input, thread, audit, actions. */
-export function EditReview({ edit, onModify }: { edit: Edit; onModify?: () => void }) {
+export function EditReview({ edit }: { edit: Edit }) {
   const diffs = useDiff(edit)
-  const { approve, reject, modify, canApprove, canModify } = useEditWorkflow(edit)
+  const { approve, reject, canApprove } = useEditWorkflow(edit)
   const [rejecting, setRejecting] = useState(false)
   const [reason, setReason] = useState('')
 
@@ -47,18 +47,6 @@ export function EditReview({ edit, onModify }: { edit: Edit; onModify?: () => vo
           <Button variant="danger" onClick={() => setRejecting(true)}>
             Reject
           </Button>
-          {canModify && (
-            <Button
-              variant="secondary"
-              onClick={() => {
-                modify()
-                onModify?.()
-              }}
-              title="Pull this request back to draft and edit the proposed changes"
-            >
-              Modify
-            </Button>
-          )}
         </div>
       )}
 

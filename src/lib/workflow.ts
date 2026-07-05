@@ -18,8 +18,6 @@ export const TRANSITIONS: Transition[] = [
   { from: 'draft', to: 'pending_approval', capability: 'submit_for_approval', label: 'Submit for approval' },
   { from: 'pending_approval', to: 'approved', capability: 'approve_edit', label: 'Approve & publish' },
   { from: 'pending_approval', to: 'rejected', capability: 'approve_edit', label: 'Reject' },
-  // Admin-only: pull a pending request back to draft to modify it (gated by approve_edit).
-  { from: 'pending_approval', to: 'draft', capability: 'approve_edit', label: 'Modify' },
   { from: 'rejected', to: 'draft', capability: 'edit_element', label: 'Reopen' },
 ]
 

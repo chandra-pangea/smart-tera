@@ -56,24 +56,13 @@ on the map, select it there, and then edit / verify it in context*:
 
 ## 3. Roles & capabilities
 
-- **Admin can edit *and* approve (resolves the spec overlap).** The capability table shows Admin with
-  no edit rights, but the role blurb says Admins "focus on governance *rather than* editing" — which
-  implies the capability exists, it's just not their focus. We make **Admin a superset of Editor**:
-  Admin can add/modify/remove elements and assign field tasks **plus** approve/reject/publish. The
-  `can()` matrix encodes this; the Admin UI still **foregrounds governance** (approval queue first,
-  editing on a secondary tab).
+- **Admin focuses on governance.** According to the doc: "An Admin reviews the Edit — the proposed property changes, the field input, and the comment thread — and approves or rejects it." Admin does NOT have edit rights. Admin can only approve/reject/publish.
 - **All edits — including an Admin's — flow through the Edit → approval pipeline.** Nothing mutates
   the published network except approval, so the audit trail stays complete even when Admin authors.
 - **Self-approval is possible (noted trade-off).** An Admin can author an Edit and approve it. We
   allow it for single-admin demo convenience and flag that a real deployment would enforce
   *approver ≠ author*.
-- **Admin can modify an approval request (decision).** As a super-user, the Admin isn't limited to
-  approve/reject on a pending request — they can also **modify it**. In the review panel a **Modify**
-  action pulls the pending edit back to `draft` (a `pending_approval → draft` transition gated by
-  `approve_edit`, so **only an Admin can do it — an Editor cannot**), makes it the active draft, and
-  drops the Admin into the Edit-map tab to adjust the proposed changes. The Admin then re-submits and
-  approves; the whole round-trip is recorded in the audit trail. This lets an Admin correct a small
-  issue in-place instead of rejecting and waiting for the editor.
+- **Admin cannot modify an approval request.** The Admin is limited to approve/reject on a pending request. They cannot modify it themselves. They must reject it back to the editor if changes are needed.
 - **Operator cannot edit or approve** — only fill the field form for assigned tasks and comment.
 
 ## 4. Workflow & edit lifecycle
@@ -89,9 +78,7 @@ on the map, select it there, and then edit / verify it in context*:
   published network; once approved the Edit is immutable/archived.
 - **Rejection is iterable.** A rejected Edit returns to the author as an editable `draft` with the
   reason recorded, and can be revised and re-submitted.
-- **Admin modify path:** there is one extra, admin-only transition — `pending_approval → draft` —
-  so an Admin can pull a request back to modify it (see Roles & capabilities). Editors have no such
-  transition.
+
 - **One active draft per author at a time** — matches "changes grouped into a single Edit".
 - **No conflict resolution between concurrent pending edits ("last approved wins").** Edits merge
   sequentially onto the current published network; an operation targeting an element another edit

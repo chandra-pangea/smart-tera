@@ -333,26 +333,6 @@ export const reopenEdit =
     dispatch(editsActions.setActiveEdit(editId))
   }
 
-/**
- * Admin-only: pull a PENDING request back to draft so the Admin can modify the
- * proposed changes before approving. Gated by `approve_edit`, so only an Admin
- * can do it (an Editor cannot). The Admin then edits it like any draft and
- * re-submits / approves.
- */
-export const modifyPendingEdit =
-  (editId: string): AppThunk =>
-  (dispatch, getState) => {
-    const state = getState()
-    const user = selectCurrentUser(state)
-    const edit = state.edits.byId[editId]
-    if (!user || !edit) return
-    if (edit.status !== 'pending_approval') return
-    if (!canTransition(edit.status, 'draft', user.role)) return // guard (admin only)
-    const at = nowIso()
-    dispatch(editsActions.setStatus({ editId, status: 'draft', at }))
-    dispatch(editsActions.addAuditEntry({ editId, entry: auditEntry(user.id, 'reopened', 'pulled back to modify') }))
-    dispatch(editsActions.setActiveEdit(editId))
-  }
 
 // ---------------------------------------------------------------------------
 // Conversation & demo reset

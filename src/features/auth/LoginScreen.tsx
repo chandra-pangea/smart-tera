@@ -10,7 +10,7 @@ export function LoginScreen() {
       <div className="w-full max-w-lg">
         <div className="mb-6 text-center">
           <div className="text-4xl">💧</div>
-          <h1 className="mt-2 text-xl font-semibold text-slate-800">Smart Tera</h1>
+          <h1 className="mt-2 text-xl font-semibold text-slate-800">SMARTTERRA</h1>
           <p className="text-sm text-slate-500">
             Water Network Review — choose a user to sign in (no password)
           </p>

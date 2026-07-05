@@ -6,10 +6,10 @@ import type { User } from '@/types/types'
  * genuine choice. Credentials are documented in the README.
  */
 export const SEED_USERS: User[] = [
-  { id: 'u_admin', name: 'Ava Admin', email: 'admin@utility.test', role: 'admin' },
-  { id: 'u_editor', name: 'Ed Editor', email: 'editor@utility.test', role: 'editor' },
-  { id: 'u_op1', name: 'Ola Operator', email: 'op1@utility.test', role: 'operator' },
-  { id: 'u_op2', name: 'Omar Operator', email: 'op2@utility.test', role: 'operator' },
+  { id: 'u_admin', name: 'Admin', email: 'admin@utility.test', role: 'admin' },
+  { id: 'u_editor', name: 'Editor', email: 'editor@utility.test', role: 'editor' },
+  { id: 'u_op1', name: 'Operator 1', email: 'op1@utility.test', role: 'operator' },
+  { id: 'u_op2', name: 'Operator 2', email: 'op2@utility.test', role: 'operator' },
 ]
 
 export function findUser(userId: string | null): User | undefined {
